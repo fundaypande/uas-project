@@ -21,6 +21,9 @@ export default class Sidebar extends React.Component {
     firebase.auth().signOut();
     this.props.navigation.navigate('Login');
   }
+  toProfile = () => {
+    this.props.navigation.navigate('Profile');
+  }
 
   render() {
     return (
@@ -58,6 +61,13 @@ export default class Sidebar extends React.Component {
             style={{ padding: 10, marginLeft: 10, marginTop: 5 }}
           >
             <Text>Log Out</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={this.toProfile}
+            style={{ padding: 10, marginLeft: 10, marginTop: 5 }}
+          >
+            <Text>Profile</Text>
           </TouchableOpacity>
 
         </Content>

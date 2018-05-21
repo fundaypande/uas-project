@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import Login from './view/Login.js';
 import Signup from './view/Signup.js';
 import Register from './view/Register.js';
+import Profile from './view/Profile.js';
 import Demo from './demo.js';
 
 
@@ -21,12 +22,15 @@ const Screens = DrawerNavigator({
   Demo: {
     screen: Demo
   },
+  Profile: {
+    screen: Profile
+  },
   Register: {
     screen: Register
   },
 },
   // {
-  //   initialRouteName: 'Demo',
+  //   initialRouteName: 'Profile',
   // },
   {
     contentComponent: props => <Sidebar {...props} />
