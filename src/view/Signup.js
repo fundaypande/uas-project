@@ -25,7 +25,7 @@ export default class Login extends Component {
 
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
-        this.props.navigation.navigate('SelamatDatang');
+        this.props.navigation.navigate('Register');
       } else {
         Alert.alert('Your not Login');
       }
@@ -47,7 +47,7 @@ export default class Login extends Component {
       if (e) {
         Alert.alert(e.code, e.message);
       } else {
-        this.props.navigation.navigate('SelamatDatang');
+        this.props.navigation.navigate('Register');
       }
     });
   }

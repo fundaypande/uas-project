@@ -4,6 +4,7 @@ import Beranda from './home';
 import Sidebar from './Sidebar';
 import Login from './view/Login.js';
 import Signup from './view/Signup.js';
+import Register from './view/Register.js';
 import Demo from './demo.js';
 
 
@@ -19,6 +20,9 @@ const Screens = DrawerNavigator({
   },
   Demo: {
     screen: Demo
+  },
+  Register: {
+    screen: Register
   },
 },
   // {

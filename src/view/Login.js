@@ -42,7 +42,7 @@ export default class Login extends Component {
   componentWillMount() {
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
-      this.props.navigation.navigate('Demo');
+      this.props.navigation.navigate('Beranda');
       } else {
         Alert.alert('Your not Login');
       }
@@ -60,14 +60,14 @@ export default class Login extends Component {
         Alert.alert(e.code, e.message);
         console.log(e.message);
       } else {
-        this.props.navigation.navigate('Demo');
+        this.props.navigation.navigate('Beranda');
       }
     });
 
     //login seccess
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
-        this.props.navigation.navigate('Demo');
+        this.props.navigation.navigate('Beranda');
       }
     });
   }

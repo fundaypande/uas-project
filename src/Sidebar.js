@@ -17,10 +17,10 @@ export default class Sidebar extends React.Component {
   //   // get the current user from firebase
   // }
   //
-  // logOut = () => {
-  //   firebase.auth().signOut();
-  //   this.props.navigation.navigate('Login');
-  // }
+  logOut = () => {
+    firebase.auth().signOut();
+    this.props.navigation.navigate('Login');
+  }
 
   render() {
     return (
@@ -54,7 +54,7 @@ export default class Sidebar extends React.Component {
             }}
           />
           <TouchableOpacity
-            //onPress={this.logOut}
+            onPress={this.logOut}
             style={{ padding: 10, marginLeft: 10, marginTop: 5 }}
           >
             <Text>Log Out</Text>

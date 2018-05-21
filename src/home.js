@@ -3,8 +3,11 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
+  ActivityIndicator
 } from 'react-native';
+import * as firebase from 'firebase';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -14,15 +17,61 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class home extends Component<Props> {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      photo: '',
+      nama: ''
+    };
+  }
+
+  componentWillMount() {
+    const users = firebase.auth().currentUser;
+    const uid = users.uid;
+    const starCountRef = firebase.database().ref('users/' + uid);
+    starCountRef.on('value', (snapshot) => {
+      const userObj = snapshot.val();
+      if (userObj != null) {
+        const profile = userObj.photo;
+        const namaku = userObj.nama;
+        console.log(profile, namaku);
+        this.setState({ nama: namaku, photo: profile });
+      }
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
+      {
+        (() => {
+          switch (this.state.photo) {
+            case null:
+              return null
+            case '':
+              return <ActivityIndicator />
+            default:
+              return (
+                <View>
+                  <Image
+                    source={{ uri: this.state.photo }}
+                    style={styles.image}
+                  />
+                </View>
+              );
+          }
+        })()
+      }
         <Text style={styles.welcome}>
           Welcome to React Native! Costumize
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit App.js
+          { this.state.nama }
+        </Text>
+        <Text>
+          Hello My World
         </Text>
         <Text style={styles.instructions}>
           {instructions}
@@ -48,5 +97,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  image: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    resizeMode: 'contain',
   },
 });
