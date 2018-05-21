@@ -14,6 +14,19 @@ import {
  import { Button } from 'native-base';
 import * as firebase from 'firebase';
 
+const config = {
+    apiKey: 'AIzaSyArt6f03vm_o0aWr8bXum0EcZG1E1P7jcc',
+    authDomain: 'uas-project-90970.firebaseapp.com',
+    databaseURL: 'https://uas-project-90970.firebaseio.com',
+    projectId: 'uas-project-90970',
+    storageBucket: 'uas-project-90970.appspot.com',
+    messagingSenderId: '29285657528'
+};
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+  }
+
 export default class Login extends Component {
 
 
@@ -21,14 +34,15 @@ export default class Login extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      goto: 'Beranda',
     };
   }
 
   componentWillMount() {
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
-      this.props.navigation.navigate('Beranda');
+      this.props.navigation.navigate('Demo');
       } else {
         Alert.alert('Your not Login');
       }
@@ -44,15 +58,16 @@ export default class Login extends Component {
     promise.catch(e => {
       if (e) {
         Alert.alert(e.code, e.message);
+        console.log(e.message);
       } else {
-        this.props.navigation.navigate('Beranda');
+        this.props.navigation.navigate('Demo');
       }
     });
 
     //login seccess
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
-        this.props.navigation.navigate('Beranda');
+        this.props.navigation.navigate('Demo');
       }
     });
   }

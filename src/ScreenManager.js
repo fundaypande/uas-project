@@ -22,7 +22,7 @@ const Screens = DrawerNavigator({
   },
 },
   // {
-  //   initialRouteName: 'UKBM2_KB1',
+  //   initialRouteName: 'Demo',
   // },
   {
     contentComponent: props => <Sidebar {...props} />
